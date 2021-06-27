@@ -1,15 +1,12 @@
 <template>
   <div v-if="tvshow != null">
-    <v-card
-      class="mx-auto"
-      width="700"
-      outlined
-      v-if="tvshow.slug === slug"
-    >
+    <v-card class="mx-auto" width="700" outlined v-if="tvshow.id === id">
       <v-list-item three-line>
         <v-list-item-content>
-          <div class="overline mb-4"><h1>{{ tvshow.title }}</h1></div>
-          <br>
+          <div class="overline mb-4">
+            <h1>{{ tvshow.title }}</h1>
+          </div>
+          <br />
           <v-card-text class="text-left">
             <p>Year : {{ tvshow.year }}</p>
             <p>{{ tvshow.description }}</p>
@@ -32,23 +29,22 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex'
+import { mapState, mapActions } from "vuex";
 export default {
-  name: 'TvshowDetail',
-  props: ['slug'],
+  name: "TvshowDetail",
+  props: ["id"],
 
-  data () {
-    return {
-    }
+  data() {
+    return {};
   },
   methods: {
-    ...mapActions(['getTVShowDetail']),
+    ...mapActions(["getTVShowDetail"]),
   },
   computed: {
-    ...mapState(['tvshow']),
+    ...mapState(["tvshow"]),
   },
-  created () {
-    this.getTVShowDetail(this.slug)
+  created() {
+    this.getTVShowDetail(this.id);
   },
-}
+};
 </script>

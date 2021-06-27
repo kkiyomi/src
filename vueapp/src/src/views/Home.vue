@@ -6,7 +6,10 @@
           <v-col :key="idx" md="auto">
             <v-card class="mx-auto" max-width="200">
               <router-link
-                :to="{ name: 'TvshowDetail', params: { slug: show.slug } }"
+                :to="{
+                  name: 'TvshowDetail',
+                  params: { slug: show.slug, id: show.id },
+                }"
               >
                 <v-img
                   class="white--text align-end"
@@ -21,7 +24,10 @@
               <v-card-title class="justify-center">
                 <router-link
                   class="red-link"
-                  :to="{ name: 'TvshowDetail', params: { slug: show.slug } }"
+                  :to="{
+                    name: 'TvshowDetail',
+                    params: { slug: show.slug, id: show.id },
+                  }"
                 >
                   {{ show.title }}
                 </router-link>

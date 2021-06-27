@@ -1,10 +1,10 @@
 <template>
   <v-app>
     <v-main>
-      <TvshowReleaseTable :slug="slug"></TvshowReleaseTable>
+      <TvshowReleaseTable :id="id"></TvshowReleaseTable>
       <br />
       <br />
-      <TvshowDetail :slug="slug"></TvshowDetail>
+      <TvshowDetail :id="id"></TvshowDetail>
     </v-main>
   </v-app>
 </template>
@@ -16,7 +16,7 @@ import { mapState, mapActions } from "vuex";
 
 export default {
   name: "Tvshow",
-  props: ["slug"],
+  props: ["id"],
   components: {
     TvshowDetail,
     TvshowReleaseTable,

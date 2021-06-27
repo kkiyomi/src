@@ -4,7 +4,7 @@
       class="mx-auto"
       width="700"
       outlined
-      v-if="this.tvshow.slug === this.slug"
+      v-if="this.tvshow.id === this.id"
       :key="globalKey"
     >
       <v-card-title>
@@ -71,7 +71,7 @@ import { mapState, mapActions, mapGetters } from "vuex";
 
 export default {
   name: "TvshowReleaseTable",
-  props: ["slug"],
+  props: ["id"],
 
   components: {
     TableColumn,
@@ -122,7 +122,7 @@ export default {
     },
   },
   async created() {
-    await this.getReleaseList(this.slug);
+    await this.getReleaseList(this.id);
   },
   watch: {
     getNumberfromId: function (newQuestion, oldQuestion) {

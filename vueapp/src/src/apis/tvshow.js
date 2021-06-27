@@ -3,25 +3,25 @@ import Api from './Api'
 const END_POINT = 'tvshow'
 
 export default {
-  all () {
+  all() {
     return Api.get(END_POINT)
   },
-  paginated (page) {
+  paginated(page) {
     return Api.get(`${END_POINT}/?page=${page}`)
   },
-  detail (slug) {
+  detail(slug) {
     return Api.get(`${END_POINT}/${slug}/`)
   },
-  releases (slug) {
-    return Api.get(`release/${slug}/`)
+  releases(id) {
+    return Api.get(`release/${id}/`)
   },
-  genres () {
+  genres() {
     return Api.get(`${END_POINT}/genre/`)
   },
-  add (data) {
+  add(data) {
     return Api.post(`${END_POINT}/add/`, data)
   },
-  addRelease (data) {
+  addRelease(data) {
     return Api.post('release/add/', data)
   },
 }

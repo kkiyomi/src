@@ -26,8 +26,8 @@ export const getTVShowGenres = async ({ commit }) => {
   })
 }
 
-export const getReleaseList = async ({ commit }, slug) => {
-  await tvshow.releases(slug).then(response => {
+export const getReleaseList = async ({ commit }, id) => {
+  await tvshow.releases(id).then(response => {
     commit('SET_RELEASE', response.data)
   })
 }

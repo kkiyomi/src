@@ -47,7 +47,7 @@ class GenreListAPIView(generics.ListAPIView):
 class TVShowRetrieveAPIView(generics.RetrieveAPIView):
     queryset = TVShow.objects.all()
     serializer_class = TVShowDetailSerializer
-    lookup_field = "slug"
+    lookup_field = "id"
 
 
 class ReleaseRetrieveAPIView(generics.ListAPIView):
@@ -55,8 +55,8 @@ class ReleaseRetrieveAPIView(generics.ListAPIView):
     serializer_class = ReleaseV2Serializer
 
     def get_queryset(self):
-        slug = self.kwargs["slug"]
-        return ReleaseV2.objects.filter(tvshow__slug=slug)
+        tvshow_id = self.kwargs["id"]
+        return ReleaseV2.objects.filter(tvshow__id=tvshow_id)
 
 
 class TVShowCreateAPIView(generics.CreateAPIView):

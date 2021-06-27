@@ -40,7 +40,7 @@
               class="red-link"
               :to="{
                 name: 'TvshowDetail',
-                params: { slug: item.tvshow_slug, id: item.tvshow_id },
+                params: { id: item.tvshow_id },
               }"
               >{{ item.tvshow_title }}
             </router-link>
