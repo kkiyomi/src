@@ -90,6 +90,7 @@
 <script>
 import TableColumn from "../TVShow/TableColumn.vue";
 import RemoveSerieDialog from "../RemoveSerieDialog.vue";
+
 import { mapState, mapActions } from "vuex";
 export default {
   name: "ReadingList",

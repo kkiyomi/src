@@ -72,7 +72,7 @@ export const AccountRegister = async ({ commit }, info) => {
 export const AccountLogin = async ({ commit }, info) => {
   await account.login(info).then(response => {
     commit('ACCOUNT_LOGIN', response.data)
-    Vue.prototype.$cookies.set('at', response.data.token)
+    Vue.prototype.$cookies.set('at', response.data.token, info.cookies_setting)
   })
 }
 
