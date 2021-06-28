@@ -5,9 +5,19 @@ from reversion.admin import VersionAdmin
 
 
 class AccountAdmin(UserAdmin):
-    list_display = ('email', 'username', 'date_joined', 'last_login', 'is_admin', 'is_staff')
-    search_fields = ('email', 'username',)
-    readonly_fields = ('date_joined', 'last_login')
+    list_display = (
+        "username",
+        "email",
+        "date_joined",
+        "last_login",
+        "is_admin",
+        "is_staff",
+    )
+    search_fields = (
+        "email",
+        "username",
+    )
+    readonly_fields = ("date_joined", "last_login")
 
     filter_horizontal = ()
     list_filter = ()
@@ -15,18 +25,18 @@ class AccountAdmin(UserAdmin):
 
 
 class SerieAdmin(VersionAdmin):
-    list_display = ('readinglist', 'tvshow', 'id', 'current_release_id', 'release')
-    search_fields = ('readinglist',)
+    list_display = ("readinglist", "tvshow", "id", "current_release_id", "release")
+    search_fields = ("readinglist",)
     readonly_fields = ()
 
     filter_horizontal = ()
-    list_filter = ('readinglist',)
+    list_filter = ("readinglist",)
     fieldsets = ()
 
 
 class ReadingListAdmin(VersionAdmin):
-    list_display = ('account', 'pk')
-    search_fields = ('account', 'pk')
+    list_display = ("account", "pk")
+    search_fields = ("account", "pk")
     readonly_fields = ()
 
     filter_horizontal = ()

@@ -29,7 +29,7 @@
 <script>
 import LoginForm from "../Account/LoginForm.vue";
 import RegisterForm from "../Account/RegisterForm.vue";
-import { mapState, mapActions } from "vuex";
+import { mapState } from "vuex";
 
 export default {
   name: "LoginRegisterTabs",
@@ -48,17 +48,12 @@ export default {
   computed: {
     ...mapState(["token"]),
   },
-  methods: {
-    async Login() {
-      await this.AccountLogin(this.info);
-      await this.getAccountInfo();
-      await this.AccountReadinglist(this.account.id);
-    },
-  },
+  methods: {},
   watch: {
     token(loggedin) {
       if (loggedin) {
         this.dialog = false;
+        this.$router.push("/readinglist");
       }
     },
   },

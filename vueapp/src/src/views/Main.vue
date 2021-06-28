@@ -9,18 +9,6 @@
               >Home</router-link
             >
             |
-            <router-link class="red-link" :to="{ name: 'About' }"
-              >About</router-link
-            >
-            |
-            <router-link class="red-link" :to="{ name: 'Login' }"
-              >Login</router-link
-            >
-            |
-            <router-link class="red-link" :to="{ name: 'Register' }"
-              >Register</router-link
-            >
-            |
             <router-link class="red-link" :to="{ name: 'ReadingList' }"
               >Readinglist</router-link
             >

@@ -1,6 +1,6 @@
 <template>
   <div class="text-center">
-    <login-register-tabs />
+    <login-register-tabs v-if="!token"> </login-register-tabs>
     <v-btn text @click="AccountLogout()"> Logout </v-btn>
   </div>
 </template>
@@ -20,7 +20,7 @@ export default {
     return {};
   },
   computed: {
-    ...mapState(["account"]),
+    ...mapState(["account", "token"]),
   },
   methods: {
     ...mapActions(["AccountLogout"]),

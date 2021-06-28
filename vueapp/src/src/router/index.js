@@ -10,26 +10,6 @@ const routes = [
     component: () => import('../views/Home.vue')
   },
   {
-    path: '/about',
-    name: 'About',
-    component: () => import('../views/About.vue')
-  },
-  {
-    path: '/login',
-    name: 'Login',
-    component: () => import('../components/Account/LoginForm.vue')
-  },
-  {
-    path: '/logout',
-    name: 'Logout',
-    redirect: '/login'
-  },
-  {
-    path: '/register',
-    name: 'Register',
-    component: () => import('../components/Account/RegisterForm.vue')
-  },
-  {
     path: '/profile',
     name: 'Profile',
     component: () => import('../views/Profile.vue')
