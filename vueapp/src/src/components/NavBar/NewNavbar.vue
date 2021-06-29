@@ -1,7 +1,7 @@
 <template>
   <div id="newnavbar" data-app>
     <v-app-bar app dark>
-      <div class="d-flex align-center mr-2">
+      <div class="d-flex align-center mr-2 ml-16">
         <v-img
           alt="Vuetify Logo"
           class="shrink mr-2"
@@ -20,9 +20,8 @@
           width="100"
         />
       </div>
-      <v-btn active-class="no-active" class="mx-1" text to="/">
-        <span class="mr-1">Home Page</span>
-        <v-icon>mdi-home</v-icon>
+      <v-btn active-class="no-active" class="mx-1 ml-4" text to="/">
+        <span>Home</span>
       </v-btn>
 
       <v-btn
@@ -37,7 +36,7 @@
 
       <v-spacer></v-spacer>
 
-      <newDropdown></newDropdown>
+      <newDropdown class="mr-16"></newDropdown>
     </v-app-bar>
   </div>
 </template>
