@@ -1,6 +1,6 @@
 <template>
   <div v-if="tvshow != null">
-    <v-card class="mx-auto" width="700" outlined v-if="tvshow.id === id">
+    <v-card class="mx-auto" width="700" outlined v-if="tvshow.slug === slug">
       <v-list-item three-line>
         <v-list-item-content>
           <div class="overline mb-4">
@@ -32,7 +32,7 @@
 import { mapState, mapActions } from "vuex";
 export default {
   name: "TvshowDetail",
-  props: ["id"],
+  props: ["slug"],
 
   data() {
     return {};
@@ -44,7 +44,7 @@ export default {
     ...mapState(["tvshow"]),
   },
   created() {
-    this.getTVShowDetail(this.id);
+    this.getTVShowDetail(this.slug);
   },
 };
 </script>

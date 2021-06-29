@@ -7,7 +7,7 @@
             <v-card class="mx-auto" max-width="200">
               <router-link
                 :to="{
-                  name: 'TvshowDetail',
+                  name: 'TvshowPage',
                   params: { slug: show.slug, id: show.id },
                 }"
               >
@@ -25,7 +25,7 @@
                 <router-link
                   class="red-link"
                   :to="{
-                    name: 'TvshowDetail',
+                    name: 'TvshowPage',
                     params: { slug: show.slug, id: show.id },
                   }"
                 >

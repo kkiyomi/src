@@ -1,13 +1,7 @@
 <template>
   <div>
     <div v-if="account">
-      <v-card
-        class="mx-auto"
-        width="700"
-        outlined
-        v-if="serie_set"
-        :key="globalKey"
-      >
+      <v-card class="mx-auto" width="700" outlined v-if="serie_set">
         <v-card-title v-if="account.readinglist === null">
           <v-btn class="ml-4" @click="AddList"> activate Reading List </v-btn>
         </v-card-title>
@@ -39,8 +33,8 @@
             <router-link
               class="red-link"
               :to="{
-                name: 'TvshowDetail',
-                params: { id: item.tvshow_id },
+                name: 'TvshowPage',
+                params: { slug: item.tvshow_slug },
               }"
               >{{ item.tvshow_title }}
             </router-link>
@@ -65,7 +59,7 @@
             ></TableColumn>
           </template>
           <template slot="footer">
-            <v-btn
+            <!-- <v-btn
               style="position: absolute; left: 10px; bottom: 10px"
               elevation="2"
               color="error"
@@ -74,10 +68,11 @@
               text
             >
               Remove
-            </v-btn>
+            </v-btn> -->
             <RemoveSerieDialog
-              v-if="globalKey < 0"
+              v-if="selected.length !== 0"
               :selected="selected"
+              @RemoveFromReadingList="updateSelected"
             ></RemoveSerieDialog>
           </template>
         </v-data-table>
@@ -89,7 +84,7 @@
 
 <script>
 import TableColumn from "../TVShow/TableColumn.vue";
-import RemoveSerieDialog from "../RemoveSerieDialog.vue";
+import RemoveSerieDialog from "../Account/RemoveSerieDialog.vue";
 
 import { mapState, mapActions } from "vuex";
 export default {
@@ -116,11 +111,8 @@ export default {
       ],
     };
   },
-  async mounted() {
-    await this.AccountReadinglist(this.account.id);
-  },
   computed: {
-    ...mapState(["serie_set", "account", "globalKey"]),
+    ...mapState(["serie_set", "account"]),
   },
   methods: {
     ...mapActions([
@@ -129,8 +121,11 @@ export default {
       "AddReadinglist",
       "DeleteSerieFromReadingList",
     ]),
+    updateSelected(variable) {
+      this.selected = variable;
+    },
+
     async RemoveSerieFromReadingList() {
-      this.dialog = !this.dialog;
       for (var i = 0; i <= this.selected.length - 1; i++) {
         await this.DeleteSerieFromReadingList(this.selected[i].id);
       }
@@ -141,6 +136,13 @@ export default {
       await this.AddReadinglist();
       await this.getAccountInfo();
       await this.AccountReadinglist(this.account.id);
+    },
+  },
+  watch: {
+    async account(account) {
+      if (account) {
+        await this.AccountReadinglist(this.account.id);
+      }
     },
   },
 };

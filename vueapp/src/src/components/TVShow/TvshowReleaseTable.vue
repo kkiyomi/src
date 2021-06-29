@@ -1,12 +1,6 @@
 <template>
   <div v-if="releases && this.tvshow != null">
-    <v-card
-      class="mx-auto"
-      width="700"
-      outlined
-      v-if="this.tvshow.id === this.id"
-      :key="globalKey"
-    >
+    <v-card class="mx-auto" width="700" outlined v-if="tvshow.slug === slug">
       <v-card-title>
         Releases
         <v-spacer></v-spacer>
@@ -71,7 +65,7 @@ import { mapState, mapActions, mapGetters } from "vuex";
 
 export default {
   name: "TvshowReleaseTable",
-  props: ["id"],
+  props: ["id", "slug"],
 
   components: {
     TableColumn,
@@ -95,7 +89,7 @@ export default {
   },
   computed: {
     ...mapGetters(["getNumberfromId", "currentSerie"]),
-    ...mapState(["releases", "tvshow", "account", "globalKey"]),
+    ...mapState(["releases", "tvshow", "account", "alert"]),
   },
   methods: {
     ...mapActions([
@@ -113,37 +107,52 @@ export default {
           readinglist: this.account.id,
         });
         await this.AccountReadinglist(this.account.id);
+
+        this.alert.message = "Entry sucessfully added...";
+        this.openAlert();
       }
     },
     async RemoveSerieFromReadingList() {
       await this.DeleteSerieFromReadingList(this.currentSerie.id);
       await this.AccountReadinglist(this.account.id);
       this.Oselected = [];
+
+      this.alert.message = "Entry sucessfully removed...";
+      this.openAlert();
+    },
+    openAlert() {
+      this.alert.state = true;
     },
   },
   async created() {
-    await this.getReleaseList(this.id);
+    // console.log(this.slug, this.id);
+    // await this.getReleaseList(this.id);
   },
   watch: {
-    getNumberfromId: function (newQuestion, oldQuestion) {
+    async tvshow(tvshow) {
+      if (tvshow != null) {
+        await this.getReleaseList(this.tvshow.id);
+      }
+    },
+    getNumberfromId: function (newSelected, oldSelected) {
       if (
-        newQuestion !== this.Oselected &&
-        newQuestion[0] != null &&
-        oldQuestion !== newQuestion
+        newSelected !== this.Oselected &&
+        newSelected[0] != null &&
+        oldSelected !== newSelected
       ) {
         this.Oselected = this.getNumberfromId;
       }
     },
-    Oselected: function (newQuestion, oldQuestion) {
+    Oselected: function (newSelected, oldSelected) {
       if (
-        oldQuestion != null &&
-        oldQuestion[0] != null &&
-        newQuestion[0] !== oldQuestion[0] &&
+        oldSelected != null &&
+        oldSelected[0] != null &&
+        newSelected[0] !== oldSelected[0] &&
         this.currentSerie != null
       ) {
         this.UpdateSerie({
           id: this.currentSerie.id,
-          selected: newQuestion[0].id,
+          selected: newSelected[0].id,
         });
       }
     },

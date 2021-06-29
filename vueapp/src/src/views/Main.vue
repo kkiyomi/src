@@ -3,6 +3,15 @@
     <newnavbar></newnavbar>
     <v-main>
       <v-container>
+        <v-snackbar v-model="alert.state" :timeout="alert.timeout" top>
+          {{ this.alert.message }}
+
+          <template v-slot:action="{ attrs }">
+            <v-btn color="pink" text v-bind="attrs" @click="resetAlert()">
+              Close
+            </v-btn>
+          </template>
+        </v-snackbar>
         <v-row class="text-center">
           <v-col>
             <router-link class="red-link" :to="{ name: 'Home' }"
@@ -31,7 +40,7 @@
 
 <script>
 import newnavbar from "../components/NavBar/NewNavbar.vue";
-import { mapState, mapActions } from "vuex";
+import { mapState } from "vuex";
 
 export default {
   name: "MainPage",
@@ -44,10 +53,13 @@ export default {
     return {};
   },
   computed: {
-    ...mapState(["account"]),
+    ...mapState(["alert"]),
   },
   methods: {
-    ...mapActions(["getAccountInfo", "AlreadyLoggedIn", "AccountReadinglist"]),
+    resetAlert() {
+      this.alert.state = false;
+      this.alert.message = null;
+    },
   },
 };
 </script>

@@ -1,6 +1,6 @@
 <template>
   <div class="text-center">
-    <login-register-tabs v-if="!token"> </login-register-tabs>
+    <login-register-tabs v-if="!account"> </login-register-tabs>
 
     <!-- <v-avatar v-else class="mr-4" color="teal" size="30">
       <v-icon dark> mdi-account-circle </v-icon>

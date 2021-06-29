@@ -47,7 +47,7 @@ class GenreListAPIView(generics.ListAPIView):
 class TVShowRetrieveAPIView(generics.RetrieveAPIView):
     queryset = TVShow.objects.all()
     serializer_class = TVShowDetailSerializer
-    lookup_field = "id"
+    lookup_field = "slug"
 
 
 class ReleaseRetrieveAPIView(generics.ListAPIView):

@@ -7,4 +7,9 @@ export default {
   tvshows: [],
   genres: [],
   tvshows_paginated: null,
+  alert: {
+    state: false,
+    message: null,
+    timeout: 3000,
+  },
 }

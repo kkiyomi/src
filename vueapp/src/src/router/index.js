@@ -21,7 +21,7 @@ const routes = [
   },
   {
     path: '/tvshow/:slug',
-    name: 'TvshowDetail',
+    name: 'TvshowPage',
     props: true,
     component: () => import('../views/Tvshow.vue')
   }
